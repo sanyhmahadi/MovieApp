@@ -58,8 +58,12 @@ class _MovieAppState extends State<MovieApp> {
               title: Text(movies[index]),
               subtitle: Text("Details"),
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => MovieApp2ndpage()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MovieApp2ndpage(
+                              movieName: movies.elementAt(index),
+                            )));
               },
               //onTap: () => debugPrint("Movie Name: ${movies.elementAt(index)}"),
             ),
@@ -70,12 +74,11 @@ class _MovieAppState extends State<MovieApp> {
   }
 }
 
-class MovieApp2ndpage extends StatefulWidget {
-  @override
-  _MovieApp2ndpageState createState() => _MovieApp2ndpageState();
-}
+class MovieApp2ndpage extends StatelessWidget {
+  final String movieName;
 
-class _MovieApp2ndpageState extends State<MovieApp2ndpage> {
+  const MovieApp2ndpage({Key key, this.movieName}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,9 +91,10 @@ class _MovieApp2ndpageState extends State<MovieApp2ndpage> {
       body: Center(
         child: Container(
           child: RaisedButton(
-            child: Text("Hello"),
-            onPressed: () {},
-          ),
+              child: Text("Back Page ${this.movieName}"),
+              onPressed: () {
+                Navigator.pop(context);
+              }),
         ),
       ),
     );
