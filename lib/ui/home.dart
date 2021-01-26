@@ -34,7 +34,7 @@ class _MovieAppState extends State<MovieApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("PSBD APP"),
+        title: Text("PSBD MOVIE APP"),
         backgroundColor: Colors.orange,
         centerTitle: true,
       ),
@@ -57,10 +57,41 @@ class _MovieAppState extends State<MovieApp> {
               trailing: Text("Tap Here..."),
               title: Text(movies[index]),
               subtitle: Text("Details"),
-              onTap: () => debugPrint("Movie Name: ${movies.elementAt(index)}"),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => MovieApp2ndpage()));
+              },
+              //onTap: () => debugPrint("Movie Name: ${movies.elementAt(index)}"),
             ),
           );
         },
+      ),
+    );
+  }
+}
+
+class MovieApp2ndpage extends StatefulWidget {
+  @override
+  _MovieApp2ndpageState createState() => _MovieApp2ndpageState();
+}
+
+class _MovieApp2ndpageState extends State<MovieApp2ndpage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("PSBD Movie Details"),
+        backgroundColor: Colors.orange,
+        centerTitle: true,
+      ),
+      backgroundColor: Colors.blueGrey,
+      body: Center(
+        child: Container(
+          child: RaisedButton(
+            child: Text("Hello"),
+            onPressed: () {},
+          ),
+        ),
       ),
     );
   }
