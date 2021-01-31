@@ -42,7 +42,7 @@ class _MovieAppState extends State<MovieApp> {
         backgroundColor: Colors.orange,
         centerTitle: true,
       ),
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: Colors.blueGrey.shade900,
       body: ListView.builder(
         itemCount: movieList.length,
         itemBuilder: (BuildContext context, int index) {
@@ -111,9 +111,14 @@ class _MovieAppState extends State<MovieApp> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        movie.title,
-                        style: TextStyle(color: Colors.white),
+                      Flexible(
+                        child: Text(
+                          movie.title,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold),
+                        ),
                       ),
                       Text(
                         "Rating: ${movie.imdbRating} / 10",
@@ -125,7 +130,7 @@ class _MovieAppState extends State<MovieApp> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text(
-                        "Release Date: ${movie.imdbRating} / 10",
+                        "Release Date: ${movie.released}",
                         style: TextStyle(color: Colors.white),
                       ),
                       Text(
@@ -186,16 +191,55 @@ class MovieApp2ndpage extends StatelessWidget {
         backgroundColor: Colors.orange,
         centerTitle: true,
       ),
-      backgroundColor: Colors.blueGrey,
-      body: Center(
-        child: Container(
-          child: RaisedButton(
-              child: Text("Back Page ${this.movie.directory}"),
-              onPressed: () {
-                Navigator.pop(context);
-              }),
-        ),
+      body: ListView(
+        children: [
+          RoutePageThumbnil(
+            thumbnil: movie.images[0],
+          )
+        ],
       ),
+
+      // backgroundColor: Colors.blueGrey,
+      // body: Center(
+      //   child: Container(
+      //     child: RaisedButton(
+      //         child: Text("Back Page ${this.movie.directory}"),
+      //         onPressed: () {
+      //           Navigator.pop(context);
+      //         }),
+      //   ),
+      // ),
+    );
+  }
+}
+
+class RoutePageThumbnil extends StatelessWidget {
+  final String thumbnil;
+
+  const RoutePageThumbnil({Key key, this.thumbnil}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      alignment: Alignment.bottomCenter,
+      children: [
+        Stack(
+          alignment: Alignment.center,
+          children: [
+            Container(
+              height: 250,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: NetworkImage(thumbnil), fit: BoxFit.cover)),
+            ),
+            Icon(
+              Icons.play_circle_fill_outlined,
+              size: 100,
+              color: Colors.white,
+            )
+          ],
+        )
+      ],
     );
   }
 }
