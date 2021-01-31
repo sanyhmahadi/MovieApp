@@ -238,7 +238,15 @@ class RoutePageThumbnil extends StatelessWidget {
               color: Colors.white,
             )
           ],
-        )
+        ),
+        Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [Colors.redAccent, Colors.white30],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter)),
+          height: 20,
+        ),
       ],
     );
   }
